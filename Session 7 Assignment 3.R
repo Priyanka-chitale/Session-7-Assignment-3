@@ -1,0 +1,12 @@
+## 1. Create a box and whisker plot by class using mtcars dataset. 
+
+library(ggplot2)
+library(purrr)
+library(tidyr)
+mtcars %>% gather(Measure, Value, -gear) %>%
+  ggplot(aes(x=factor(gear), y= Value, fill=factor(gear))) + 
+  geom_boxplot(outlier.colour = "red")+
+  stat_boxplot(geom = "errorbar", width=0.5)+
+  facet_wrap(~Measure, scales="free_y")+
+  ggtitle('Box and Whisker plot of mtcars Dataset')+
+  theme_bw()+theme(plot.title = element_text(hjust=0.5,size=20,face='bold'))
